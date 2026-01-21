@@ -80,6 +80,28 @@ namespace Cozy.Match.Puzzle
             return false;
         }
 
+        /// <summary>
+        /// Get all matching hexagons starting from the given hexagon
+        /// </summary>
+        /// <param name="hexagon"></param>
+        /// <param name="pieceId"></param>
+        /// <returns></returns>
+        public IEnumerable<Hexagon> GetMatches(Hexagon hexagon, uint pieceId)
+        {
+            HashSet<Hexagon> matched = new();
+            HashSet<long> visited = new();
+
+            InternalMatchSearch(hexagon, pieceId, matched, visited);
+
+            return matched;
+        }
+
+        /// <summary>
+        /// Simulate matches without modifying the puzzle state
+        /// </summary>
+        /// <param name="hexagon"></param>
+        /// <param name="pieceId"></param>
+        /// <returns></returns>
         public IEnumerable<Hexagon> SimulateMatch(Hexagon hexagon, uint pieceId)
         {
             HashSet<Hexagon> matched = new();
@@ -94,7 +116,7 @@ namespace Cozy.Match.Puzzle
             return matched;
         }
     
-        public void InternalMatchSearch(Hexagon hexagon, uint pieceId, HashSet<Hexagon> matched, HashSet<long> visited)
+        private void InternalMatchSearch(Hexagon hexagon, uint pieceId, HashSet<Hexagon> matched, HashSet<long> visited)
         {
             long hexId = HexagonEncoder.Encode(hexagon);
 
