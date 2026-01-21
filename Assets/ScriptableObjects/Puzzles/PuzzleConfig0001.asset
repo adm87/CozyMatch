@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97a8145a0d8f29190a58c44a1316c268, type: 3}
+  m_Name: PuzzleConfig0001
+  m_EditorClassIdentifier: cozy.match::Cozy.Match.Puzzle.ScriptableObjects.PuzzleConfigScriptableObject
+  Configuration:
+    Orientation: 0
+    CoordinateSystem: 1
+    OffsetGrid:
+      OffsetParity: 0
+      Width: 6
+      Height: 6
+    AxialGrid:
+      Radius: 3
+    HexRadius: 0.5
+  initialPieceCount: 15
+  puzzlePieceConfig: {fileID: 11400000, guid: 7cc92e38db070fbfdaece73530b04eaf, type: 2}
