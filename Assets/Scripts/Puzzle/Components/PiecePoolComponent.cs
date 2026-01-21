@@ -49,6 +49,9 @@ namespace Cozy.Match.Puzzle.Components
                     piece = Instantiate(pool.PiecePrefab);
                     piece.GetComponent<PieceComponent>().PieceID = pieceId;
                 }
+                
+                piece.transform.rotation = Quaternion.identity;
+                piece.transform.localScale = Vector3.one;
 
                 return piece;
             }

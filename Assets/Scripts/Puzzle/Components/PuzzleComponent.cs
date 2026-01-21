@@ -11,6 +11,7 @@ namespace Cozy.Match.Puzzle.Components
     public class PuzzleComponent : MonoBehaviour, IPuzzleInputReceiver
     {
         private static readonly WaitForSeconds waitForSeconds0_2 = new(0.2f);
+        private static readonly WaitForEndOfFrame waitForEndOfFrame = new();
 
         [SerializeField]
         private PuzzleConfigScriptableObject puzzleConfig;
@@ -73,7 +74,7 @@ namespace Cozy.Match.Puzzle.Components
         {
             inputComponent.Unsubscribe(this);
         }
-        
+
         private void InitializePuzzleGrid()
         {
             var spawnRates = puzzleConfig.PuzzlePieceConfig.Configuration.Select(config => config.SpawnRate).ToArray();
@@ -86,7 +87,7 @@ namespace Cozy.Match.Puzzle.Components
             puzzle.Grid.ForEach(hexagon =>
             {
                 var tile = tilePool.GetTile();
-                
+
                 var (x, y) = HexagonMath.FromHex[orientation](hexagon, radius);
                 tile.transform.position = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + y);
                 tile.transform.SetParent(tileContainer.transform);
@@ -181,12 +182,12 @@ namespace Cozy.Match.Puzzle.Components
 
         public void OnInputDown(PuzzleInputState inputState)
         {
-            
+
         }
 
         public void OnInputUp(PuzzleInputState inputState)
         {
-            
+
         }
 
         public void OnInputClicked(PuzzleInputState inputState)
@@ -205,7 +206,7 @@ namespace Cozy.Match.Puzzle.Components
             );
 
             int pieceID = nextPiece.GetComponent<PieceComponent>().PieceID;
-            StartCoroutine(ProcessPiecePlacement(hexagon, pieceID, ()=>isPlacingPiece = false));
+            StartCoroutine(ProcessPiecePlacement(hexagon, pieceID, () => isPlacingPiece = false));
         }
 
         public void OnInputMove(PuzzleInputState inputState)
@@ -269,6 +270,8 @@ namespace Cozy.Match.Puzzle.Components
             var matched = puzzle.GetMatches(hexagon, (uint)pieceID).ToList();
             if (matched.Count >= Puzzle.RequiredMatchCount)
             {
+                yield return AnimationMatch(hexagon, matched);
+
                 // Remove matched pieces
                 foreach (var matchHex in matched)
                 {
@@ -286,13 +289,51 @@ namespace Cozy.Match.Puzzle.Components
                     yield return ProcessPiecePlacement(hexagon, evolvedID);
                 }
             }
-            
-            ToggleNextAndCursor(false);
 
             ClearNextPiece();
             SetNextPiece();
 
+            yield return waitForSeconds0_2;
+
             onComplete?.Invoke();
+        }
+
+        private IEnumerator AnimationMatch(Hexagon targetHex, List<Hexagon> hexagons)
+        {
+            float elapsed = 0f;
+            float duration = 0.4f;
+
+            var (x, y) = HexagonMath.FromHex[puzzleConfig.Configuration.Orientation](targetHex, puzzleConfig.Configuration.HexRadius);
+
+            HashSet<long> completed = new();
+            while (completed.Count() != hexagons.Count())
+            {
+                foreach (var hexagon in hexagons)
+                {
+                    long hexId = HexagonEncoder.Encode(hexagon);
+                    if (completed.Contains(hexId))
+                    {
+                        continue;
+                    }
+
+                    if (pieceViews.TryGetValue(hexId, out GameObject pieceView))
+                    {
+                        float t = elapsed / duration;
+                        float eased = t < 0.5f ? 4f * t * t * t : 1f - Mathf.Pow(-2f * t + 2f, 3f) / 2f;
+                        float scale = Mathf.Lerp(1f, 0f, eased);
+                        
+                        pieceView.transform.position = Vector3.Lerp(pieceView.transform.position, new Vector3(transform.position.x + x, transform.position.y, transform.position.z + y), eased);
+
+                        if (elapsed >= duration)
+                        {
+                            completed.Add(hexId);
+                        }
+                    }
+                }
+
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
         }
 
         private void ToggleNextAndCursor(bool isActive)
