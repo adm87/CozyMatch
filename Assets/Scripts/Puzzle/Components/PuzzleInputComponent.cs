@@ -42,6 +42,18 @@ namespace Cozy.Match.Puzzle.Components
         {
             inputActions.Player.Enable();
         }
+
+        public void ToggleInput(bool isEnabled)
+        {
+            if (isEnabled)
+            {
+                inputActions.Player.Enable();
+            }
+            else
+            {
+                inputActions.Player.Disable();
+            }
+        }
         
         public void Subscribe(IPuzzleInputReceiver receiver)
         {
