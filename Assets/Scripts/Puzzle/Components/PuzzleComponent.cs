@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Cozy.Hexagons;
 using Cozy.Match.Puzzle.ScriptableObjects;
+using Cozy.Match.UI.Components;
 using UnityEngine;
 
 namespace Cozy.Match.Puzzle.Components
@@ -15,6 +16,9 @@ namespace Cozy.Match.Puzzle.Components
 
         [SerializeField]
         private PuzzleConfigScriptableObject puzzleConfig;
+
+        [SerializeField]
+        private PieceDisplayComponent pieceDisplay;
 
         [SerializeField]
         private GameObject cursor;
@@ -33,13 +37,15 @@ namespace Cozy.Match.Puzzle.Components
 
         private GameObject tileContainer;
         private GameObject pieceContainer;
-        private GameObject nextPiece;
+        private GameObject currentPiece;
 
         private Puzzle puzzle;
 
         private uint spawnIndex;
         private bool canPlacePiece;
         private bool isPlacingPiece;
+
+        private uint nextPieceID;
 
         private Dictionary<long, GameObject> pieceViews = new();
 
@@ -62,17 +68,9 @@ namespace Cozy.Match.Puzzle.Components
         {
             InitializePuzzleGrid();
             RefreshPieceView();
-            SetNextPiece();
-        }
+            SetCurrentPiece();
 
-        private void OnEnable()
-        {
             inputComponent.Subscribe(this);
-        }
-
-        private void OnDisable()
-        {
-            inputComponent.Unsubscribe(this);
         }
 
         private void InitializePuzzleGrid()
@@ -95,6 +93,8 @@ namespace Cozy.Match.Puzzle.Components
                 return true;
             });
             puzzle.SpawnBoard(puzzleConfig.InitialPieceCount, puzzle);
+
+            nextPieceID = puzzle.PieceSpawner.SelectPieceID(0f);
 
             cursor.transform.rotation = angles;
             cursor.SetActive(false);
@@ -123,20 +123,19 @@ namespace Cozy.Match.Puzzle.Components
             }
         }
 
-        private void SetNextPiece()
+        private void SetCurrentPiece()
         {
-            if (nextPiece != null)
+            if (currentPiece != null)
             {
-                ClearNextPiece();
+                ClearCurrentPiece();
             }
 
-            float time = (float)spawnIndex / spawnRateRange;
-            uint selectedPieceID = puzzle.PieceSpawner.SelectPieceID(time);
+            currentPiece = piecePool.GetPiece((int)nextPieceID);
+            currentPiece.transform.SetParent(transform);
+            currentPiece.transform.position = cursor.transform.position;
+            currentPiece.SetActive(false);
 
-            nextPiece = piecePool.GetPiece((int)selectedPieceID);
-            nextPiece.transform.SetParent(transform);
-            nextPiece.transform.position = cursor.transform.position;
-            nextPiece.SetActive(false);
+            pieceDisplay.SetCurrentPiece(puzzleConfig.PuzzlePieceConfig.Configuration[(int)nextPieceID].Icon);
 
             spawnIndex++;
 
@@ -144,15 +143,20 @@ namespace Cozy.Match.Puzzle.Components
             {
                 spawnIndex = 0;
             }
+
+            float time = (float)spawnIndex / spawnRateRange;
+            nextPieceID = puzzle.PieceSpawner.SelectPieceID(time);
+
+            pieceDisplay.SetNextPiece(puzzleConfig.PuzzlePieceConfig.Configuration[(int)nextPieceID].Icon);
         }
 
-        private void ClearNextPiece()
+        private void ClearCurrentPiece()
         {
-            if (nextPiece != null)
+            if (currentPiece != null)
             {
-                var pieceComponent = nextPiece.GetComponent<PieceComponent>();
-                piecePool.ReturnPiece(pieceComponent.PieceID, nextPiece);
-                nextPiece = null;
+                var pieceComponent = currentPiece.GetComponent<PieceComponent>();
+                piecePool.ReturnPiece(pieceComponent.PieceID, currentPiece);
+                currentPiece = null;
             }
         }
 
@@ -197,16 +201,23 @@ namespace Cozy.Match.Puzzle.Components
                 return;
             }
 
-            isPlacingPiece = true;
-
             Hexagon hexagon = HexagonMath.ToHex[puzzleConfig.Configuration.Orientation](
                 inputState.Position.x - transform.position.x,
                 inputState.Position.z - transform.position.z,
                 puzzleConfig.Configuration.HexRadius
             );
 
-            int pieceID = nextPiece.GetComponent<PieceComponent>().PieceID;
+            if (puzzle.Pieces.ContainsKey(HexagonEncoder.Encode(hexagon)))
+            {
+                return;
+            }
+
+            isPlacingPiece = true;
+
+            int pieceID = currentPiece.GetComponent<PieceComponent>().PieceID;
             StartCoroutine(ProcessPiecePlacement(hexagon, pieceID, () => isPlacingPiece = false));
+            
+            SetCurrentPiece();
         }
 
         public void OnInputMove(PuzzleInputState inputState)
@@ -228,7 +239,7 @@ namespace Cozy.Match.Puzzle.Components
             if (puzzle.Pieces.ContainsKey(hexId))
             {
                 cursor.SetActive(false);
-                nextPiece.SetActive(false);
+                currentPiece.SetActive(false);
                 return;
             }
 
@@ -238,34 +249,24 @@ namespace Cozy.Match.Puzzle.Components
                 cursor.transform.position = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + y);
                 cursor.SetActive(true);
 
-                nextPiece.transform.position = cursor.transform.position;
-                nextPiece.SetActive(true);
+                currentPiece.transform.position = cursor.transform.position;
+                currentPiece.SetActive(true);
 
                 canPlacePiece = true;
             }
             else
             {
                 cursor.SetActive(false);
-                nextPiece.SetActive(false);
+                currentPiece.SetActive(false);
             }
         }
 
         private IEnumerator ProcessPiecePlacement(Hexagon hexagon, int pieceID, Action onComplete = null)
         {
-            ToggleNextAndCursor(false);
+            ToggleCurrentAndCursor(false);
 
-            bool exists = puzzle.Grid.TryGetHexagon(hexagon, out _);
             long hexId = HexagonEncoder.Encode(hexagon);
-
-            if (!exists)
-            {
-                onComplete?.Invoke();
-                yield break;
-            }
-
             PlacePiece(hexId, pieceID);
-
-            yield return waitForSeconds0_2;
 
             var matched = puzzle.GetMatches(hexagon, (uint)pieceID).ToList();
             if (matched.Count >= Puzzle.RequiredMatchCount)
@@ -286,12 +287,10 @@ namespace Cozy.Match.Puzzle.Components
                 {
                     PlacePiece(hexId, evolvedID);
 
+                    yield return AnimateEvolution(hexagon);
                     yield return ProcessPiecePlacement(hexagon, evolvedID);
                 }
             }
-
-            ClearNextPiece();
-            SetNextPiece();
 
             yield return waitForSeconds0_2;
 
@@ -301,7 +300,7 @@ namespace Cozy.Match.Puzzle.Components
         private IEnumerator AnimationMatch(Hexagon targetHex, List<Hexagon> hexagons)
         {
             float elapsed = 0f;
-            float duration = 0.4f;
+            float duration = 0.25f;
 
             var (x, y) = HexagonMath.FromHex[puzzleConfig.Configuration.Orientation](targetHex, puzzleConfig.Configuration.HexRadius);
 
@@ -319,9 +318,9 @@ namespace Cozy.Match.Puzzle.Components
                     if (pieceViews.TryGetValue(hexId, out GameObject pieceView))
                     {
                         float t = elapsed / duration;
-                        float eased = t < 0.5f ? 4f * t * t * t : 1f - Mathf.Pow(-2f * t + 2f, 3f) / 2f;
-                        float scale = Mathf.Lerp(1f, 0f, eased);
-                        
+                        float eased = t * t * t;
+
+                        float scale = Mathf.Lerp(1f, 0f, eased);                        
                         pieceView.transform.position = Vector3.Lerp(pieceView.transform.position, new Vector3(transform.position.x + x, transform.position.y, transform.position.z + y), eased);
 
                         if (elapsed >= duration)
@@ -336,12 +335,40 @@ namespace Cozy.Match.Puzzle.Components
             }
         }
 
-        private void ToggleNextAndCursor(bool isActive)
+        private IEnumerator AnimateEvolution(Hexagon hexagon)
+        {
+            float elapsed = 0f;
+            float duration = 0.5f;
+
+            long hexId = HexagonEncoder.Encode(hexagon);
+            if (!pieceViews.TryGetValue(hexId, out GameObject pieceView))
+            {
+                yield break;
+            }
+
+            while (elapsed < duration)
+            {
+                float t = elapsed / duration;
+                float c4 = 2f * Mathf.PI / 3f;
+
+                float eased = t == 0f ? 0f 
+                            : t == 1f ? 1f 
+                            : Mathf.Pow(2f, -10f * t) * Mathf.Sin((t * 10f - 0.75f) * c4) + 1f;
+
+                float scale = Mathf.Lerp(1.2f, 1f, eased);
+                pieceView.transform.localScale = new Vector3(scale, scale, scale);
+
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+        }
+
+        private void ToggleCurrentAndCursor(bool isActive)
         {
             cursor.SetActive(isActive);
-            if (nextPiece != null)
+            if (currentPiece != null)
             {
-                nextPiece.SetActive(isActive);
+                currentPiece.SetActive(isActive);
             }
         }
 

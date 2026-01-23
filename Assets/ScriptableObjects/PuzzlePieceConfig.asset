@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: cozy.match::Cozy.Match.Puzzle.ScriptableObjects.PuzzlePieceConfigScriptableObject
   configuration:
   - PiecePrefab: {fileID: 4459518012349711767, guid: 17508e77c98426beabdeeaf7b0e08186, type: 3}
+    Icon: {fileID: 21300000, guid: cc335288b50f048c0aaf0a0560e3bb15, type: 3}
     SpawnRate:
       InitialSpawnRate:
         serializedVersion: 2
@@ -64,6 +65,7 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
   - PiecePrefab: {fileID: 3512488027766746625, guid: d90f6335b81661282ae7c25ad171f96b, type: 3}
+    Icon: {fileID: 21300000, guid: 314d8233b16be9f8d8285db0aec9d56b, type: 3}
     SpawnRate:
       InitialSpawnRate:
         serializedVersion: 2
@@ -71,18 +73,18 @@ MonoBehaviour:
         - serializedVersion: 3
           time: 0
           value: 0
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
+          inSlope: 1
+          outSlope: 1
+          tangentMode: 34
           weightedMode: 0
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
           time: 1
           value: 1
-          inSlope: 2
-          outSlope: 2
-          tangentMode: 0
+          inSlope: 1
+          outSlope: 1
+          tangentMode: 34
           weightedMode: 0
           inWeight: 0
           outWeight: 0
@@ -94,19 +96,19 @@ MonoBehaviour:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0
+          value: 1
           inSlope: 0
           outSlope: 0
-          tangentMode: 0
+          tangentMode: 34
           weightedMode: 0
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
           time: 1
           value: 1
-          inSlope: 2
-          outSlope: 2
-          tangentMode: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
           weightedMode: 0
           inWeight: 0
           outWeight: 0
@@ -114,54 +116,13 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
   - PiecePrefab: {fileID: 8403952176457634378, guid: 5c9e81c69287bf0c79f1d71b36207563, type: 3}
+    Icon: {fileID: 21300000, guid: 8a21d8ad0117087988cfeecb417932ad, type: 3}
     SpawnRate:
       InitialSpawnRate:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        - serializedVersion: 3
-          time: 0.5
-          value: 0
-          inSlope: Infinity
-          outSlope: 0.0153652765
-          tangentMode: 7
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.1549567
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: -0
-          outSlope: -0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.07940332
-          outWeight: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      SpawnRate:
-        serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 0
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        - serializedVersion: 3
-          time: 0.25
           value: 0
           inSlope: 0
           outSlope: 0
@@ -181,14 +142,6 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-  - PiecePrefab: {fileID: 7160972558911865218, guid: 3caa5d09681fed2eb80f8d8888c6ed66, type: 3}
-    SpawnRate:
-      InitialSpawnRate:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
       SpawnRate:
         serializedVersion: 2
         m_Curve:
@@ -197,81 +150,35 @@ MonoBehaviour:
           value: 0
           inSlope: 0
           outSlope: 0
-          tangentMode: 0
+          tangentMode: 65
           weightedMode: 0
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
           time: 0.5
           value: 0
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
+          inSlope: -0
+          outSlope: 0.3380996
+          tangentMode: 5
           weightedMode: 0
-          inWeight: 0
-          outWeight: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
           value: 1
-          inSlope: 5.6972632
-          outSlope: 5.6972632
+          inSlope: 4.7573204
+          outSlope: 4.7573204
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.03176129
-          outWeight: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-  - PiecePrefab: {fileID: 2052003297185734585, guid: f4a36ea384ce096499852eca1b3d6cc0, type: 3}
-    SpawnRate:
-      InitialSpawnRate:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      SpawnRate:
-        serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 0
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        - serializedVersion: 3
-          time: 0.75
-          value: 0
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 11.495975
-          outSlope: 11.495975
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.032723665
+          inWeight: 0.037536144
           outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
   - PiecePrefab: {fileID: 6870314428191316737, guid: 6c6ea72413a0c6c48a22fa66a31d6d25, type: 3}
+    Icon: {fileID: 21300000, guid: 436fc65a72427dc0cb61aef4376d234d, type: 3}
     SpawnRate:
       InitialSpawnRate:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      SpawnRate:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
@@ -286,29 +193,21 @@ MonoBehaviour:
         - serializedVersion: 3
           time: 0.75
           value: 0
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
+          inSlope: -0
+          outSlope: 0.6174096
+          tangentMode: 5
           weightedMode: 0
-          inWeight: 0
-          outWeight: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.9995223
-          value: 1.0059524
-          inSlope: 11.6774235
-          outSlope: 11.6774235
+          time: 1
+          value: 1
+          inSlope: 6.6938367
+          outSlope: 6.6938367
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.026965404
+          inWeight: 0.06544757
           outWeight: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-  - PiecePrefab: {fileID: 6086993768835323244, guid: 6f6d4b230cce2ad6c98268f3d46409a4, type: 3}
-    SpawnRate:
-      InitialSpawnRate:
-        serializedVersion: 2
-        m_Curve: []
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
@@ -320,140 +219,445 @@ MonoBehaviour:
           value: 0
           inSlope: 0
           outSlope: 0
-          tangentMode: 1
+          tangentMode: 65
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 0.75
+          value: 0
+          inSlope: -0
+          outSlope: 0.3380996
+          tangentMode: 5
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 4.7573204
+          outSlope: 4.7573204
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.037536144
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+  - PiecePrefab: {fileID: 4534832503995766624, guid: 656dc337a25d148dc9486862e65b117a, type: 3}
+    Icon: {fileID: 21300000, guid: bd10c55d987d87acaa784100ae81d3f9, type: 3}
+    SpawnRate:
+      InitialSpawnRate:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0.0014419556
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      SpawnRate:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 65
           weightedMode: 0
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
           time: 0.85
           value: 0
+          inSlope: -0
+          outSlope: 0.3380996
+          tangentMode: 5
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 18.730316
+          outSlope: 18.730316
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.04491489
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+  - PiecePrefab: {fileID: 6086993768835323244, guid: 6f6d4b230cce2ad6c98268f3d46409a4, type: 3}
+    Icon: {fileID: 21300000, guid: 09f2b357380558c588270ca96419d611, type: 3}
+    SpawnRate:
+      InitialSpawnRate:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0.0014419556
+          value: 0
           inSlope: 0
-          outSlope: 6.666668
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      SpawnRate:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0
           tangentMode: 65
           weightedMode: 0
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
+          time: 0.85
+          value: 0
+          inSlope: -0
+          outSlope: 0.3380996
+          tangentMode: 5
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
           time: 1
           value: 1
-          inSlope: 6.666668
-          outSlope: 6.1418777
-          tangentMode: 69
+          inSlope: 18.730316
+          outSlope: 18.730316
+          tangentMode: 0
           weightedMode: 0
-          inWeight: 0.1395571
+          inWeight: 0.04491489
           outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-  - PiecePrefab: {fileID: 4534832503995766624, guid: 656dc337a25d148dc9486862e65b117a, type: 3}
-    SpawnRate:
-      InitialSpawnRate:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      SpawnRate:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
   - PiecePrefab: {fileID: 5516138192713551613, guid: 257ca131855d4d59bb914d520b59ba05, type: 3}
+    Icon: {fileID: 21300000, guid: 8db46f859f25f3e3f8ce19fb1c2e2a66, type: 3}
     SpawnRate:
       InitialSpawnRate:
         serializedVersion: 2
-        m_Curve: []
+        m_Curve:
+        - serializedVersion: 3
+          time: 0.0014419556
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
       SpawnRate:
         serializedVersion: 2
-        m_Curve: []
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 65
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 0.85
+          value: 0
+          inSlope: -0
+          outSlope: 0.3380996
+          tangentMode: 5
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 18.730316
+          outSlope: 18.730316
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.04491489
+          outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-  - PiecePrefab: {fileID: 5516138192713551613, guid: 257ca131855d4d59bb914d520b59ba05, type: 3}
+  - PiecePrefab: {fileID: 18362625090540085, guid: f9ee2ff1dabde3ce6a0f2e3c02822752, type: 3}
+    Icon: {fileID: 21300000, guid: 88b7d3901a7880c32ab550c087149a44, type: 3}
     SpawnRate:
       InitialSpawnRate:
         serializedVersion: 2
-        m_Curve: []
+        m_Curve:
+        - serializedVersion: 3
+          time: 0.0014419556
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
       SpawnRate:
         serializedVersion: 2
-        m_Curve: []
+        m_Curve:
+        - serializedVersion: 3
+          time: 0.0014419556
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
   - PiecePrefab: {fileID: 2416019410297528092, guid: 3df7648697bf38111abebfa4b3376b44, type: 3}
+    Icon: {fileID: 21300000, guid: 92418c629712d4054be68045affe5442, type: 3}
     SpawnRate:
       InitialSpawnRate:
         serializedVersion: 2
-        m_Curve: []
+        m_Curve:
+        - serializedVersion: 3
+          time: 0.0014419556
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
       SpawnRate:
         serializedVersion: 2
-        m_Curve: []
+        m_Curve:
+        - serializedVersion: 3
+          time: 0.0014419556
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+  - PiecePrefab: {fileID: 8109397763781464191, guid: 6bab4a808bd200dccb531fb46549dd42, type: 3}
+    Icon: {fileID: 21300000, guid: 0dbe27d8462d1ab2aa5a1a06dbd98bde, type: 3}
+    SpawnRate:
+      InitialSpawnRate:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0.0014419556
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      SpawnRate:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0.0014419556
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
   - PiecePrefab: {fileID: 1257916364778436107, guid: 78aa4986d8e5256f9a00231be0ce49df, type: 3}
+    Icon: {fileID: 21300000, guid: 6aef0716d52e0f49788a2fa7496cc007, type: 3}
     SpawnRate:
       InitialSpawnRate:
         serializedVersion: 2
-        m_Curve: []
+        m_Curve:
+        - serializedVersion: 3
+          time: 0.0014419556
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
       SpawnRate:
         serializedVersion: 2
-        m_Curve: []
+        m_Curve:
+        - serializedVersion: 3
+          time: 0.0014419556
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
   - PiecePrefab: {fileID: 3720257139036523117, guid: 0f2200ae19f00de52bba25bdc2f5ae56, type: 3}
+    Icon: {fileID: 21300000, guid: b2d2668dd1a1b38d8858b0a93fb64398, type: 3}
     SpawnRate:
       InitialSpawnRate:
         serializedVersion: 2
-        m_Curve: []
+        m_Curve:
+        - serializedVersion: 3
+          time: 0.0014419556
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
       SpawnRate:
         serializedVersion: 2
-        m_Curve: []
+        m_Curve:
+        - serializedVersion: 3
+          time: 0.0014419556
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-  - PiecePrefab: {fileID: 3720257139036523117, guid: 0f2200ae19f00de52bba25bdc2f5ae56, type: 3}
+  - PiecePrefab: {fileID: 7941076366467882825, guid: e6940d558344ea90890b6845ec42c930, type: 3}
+    Icon: {fileID: 21300000, guid: fd49cbe1dd6048014b41cca295726ec7, type: 3}
     SpawnRate:
       InitialSpawnRate:
         serializedVersion: 2
-        m_Curve: []
+        m_Curve:
+        - serializedVersion: 3
+          time: 0.0014419556
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
       SpawnRate:
         serializedVersion: 2
-        m_Curve: []
+        m_Curve:
+        - serializedVersion: 3
+          time: 0.0014419556
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-  - PiecePrefab: {fileID: 3720257139036523117, guid: 0f2200ae19f00de52bba25bdc2f5ae56, type: 3}
+  - PiecePrefab: {fileID: 1977354498801393687, guid: ba35f79edf13fd740b76edbd53b9efbc, type: 3}
+    Icon: {fileID: 21300000, guid: 62248baad167c2622ba7a85af31af146, type: 3}
     SpawnRate:
       InitialSpawnRate:
         serializedVersion: 2
-        m_Curve: []
+        m_Curve:
+        - serializedVersion: 3
+          time: 0.0014419556
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
       SpawnRate:
         serializedVersion: 2
-        m_Curve: []
+        m_Curve:
+        - serializedVersion: 3
+          time: 0.0014419556
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+  - PiecePrefab: {fileID: 7725776407990276903, guid: abe444304f8b24a42a03256e61fd7307, type: 3}
+    Icon: {fileID: 21300000, guid: 8050babb514c22a99ba4d848670b200e, type: 3}
+    SpawnRate:
+      InitialSpawnRate:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0.0014419556
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      SpawnRate:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0.0014419556
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4

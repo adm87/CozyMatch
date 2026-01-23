@@ -38,14 +38,9 @@ namespace Cozy.Match.Puzzle.Components
             inputActions = new InputSystem_Actions();
         }
 
-        private void OnEnable()
+        private void Start()
         {
             inputActions.Player.Enable();
-        }
-
-        private void OnDisable()
-        {
-            inputActions.Player.Disable();
         }
         
         public void Subscribe(IPuzzleInputReceiver receiver)
@@ -106,7 +101,7 @@ namespace Cozy.Match.Puzzle.Components
 
             if (wasPreviouslyDown && !isDown)
             {
-                if (delta.magnitude < 0.01f)
+                if (delta.magnitude < 0.1f)
                 {
                     NotifyClicked(inputState);
                 }

@@ -20,7 +20,7 @@ MonoBehaviour:
       Width: 6
       Height: 6
     AxialGrid:
-      Radius: 3
+      Radius: 2
     HexRadius: 0.5
   initialPieceCount: 15
   puzzlePieceConfig: {fileID: 11400000, guid: 7cc92e38db070fbfdaece73530b04eaf, type: 2}
