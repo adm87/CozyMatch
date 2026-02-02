@@ -6,7 +6,6 @@ using Cozy.Hexagons;
 using Cozy.Match.Puzzle.ScriptableObjects;
 using Cozy.Match.UI.Components;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Cozy.Match.Puzzle.Components
 {
@@ -106,7 +105,7 @@ namespace Cozy.Match.Puzzle.Components
                 tile.transform.rotation = angles;
                 return true;
             });
-            puzzle.SpawnBoard(puzzleConfig.InitialPieceCount, puzzle);
+            puzzle.SpawnBoard(puzzleConfig.InitialPieceCount);
 
             nextPieceID = puzzle.PieceSpawner.SelectPieceID(0f);
 

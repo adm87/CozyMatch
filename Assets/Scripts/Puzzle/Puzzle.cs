@@ -32,12 +32,12 @@ namespace Cozy.Match.Puzzle
             hexConfig = config;
         }
 
-        public void SpawnBoard(uint count, Puzzle puzzle)
+        public void SpawnBoard(uint count)
         {
             pieces = new();
 
             List<Hexagon> availableHexagons = new();
-            puzzle.Grid.ForEach(hexagon =>
+            grid.ForEach(hexagon =>
             {
                 availableHexagons.Add(hexagon);
                 return true;
